@@ -4,6 +4,7 @@ import pickle
 import numpy as np
 import sklearn
 
+
 app = Flask(__name__)
 model = pickle.load(open('random_forrest_reg_model.pkl', 'rb'))
 @app.route('/',methods=['GET'])
@@ -44,7 +45,7 @@ def predict():
         output=round(prediction[0],2) # upto 2 decimal places
 
         if output<0:
-            return render_template('index.html',prediction_texts="Sorry you cannot sell this car")
+            return render_template('index.html',prediction_texts="Sorry for inconvenience but you cannot sell this car")
         else:
             return render_template('index.html',prediction_text="You Can Sell The Car at {} lakhs".format(output))
     else:
